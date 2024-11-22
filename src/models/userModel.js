@@ -3,8 +3,12 @@ const sequelize = require("../config/database");
 
 const Users = sequelize.define("users", {
   id: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.STRING(),
     primaryKey: true,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   username: {
@@ -13,6 +17,14 @@ const Users = sequelize.define("users", {
   },
   password: {
     type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  verifCode: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  verify: {
+    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
 });
