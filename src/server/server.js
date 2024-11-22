@@ -1,6 +1,6 @@
 const express = require("express");
 const sequelize = require("../config/database.js");
-const router = require("../routes/route.js");
+const routes = require("../routes/route.js");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(cookieParser());
   }
 })();
 
-app.use(router);
+app.use(routes);
 
 app.listen(8080, () => {
   console.log("Running at http://localhost:8080");
