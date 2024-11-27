@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 require("dotenv").config();
 
 const trasnporter = nodemailer.createTransport({
@@ -11,10 +12,11 @@ const trasnporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = async (receiver, username, verifCode) => {
+const sendMail = async (receiver, username) => {
   try {
+    const verifCode = crypto.randomInt(100000, 1000000);
     const info = await trasnporter.sendMail({
-      from: "azkaowi222@gmail.com",
+      from: "GreenLeaf azkaowi222@gmail.com",
       to: receiver,
       subject: "Email Verification Code",
       text: "Verification",
@@ -25,6 +27,7 @@ const sendMail = async (receiver, username, verifCode) => {
               </div>`,
     });
     console.log(`Mail has been send from ${info.messageId}`);
+    return verifCode;
   } catch (error) {
     console.error(error.message);
   }

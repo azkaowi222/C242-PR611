@@ -2,8 +2,14 @@ const express = require("express");
 const sequelize = require("../config/database.js");
 const routes = require("../routes/route.js");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 

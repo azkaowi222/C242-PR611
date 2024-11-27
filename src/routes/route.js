@@ -1,16 +1,26 @@
 const express = require("express");
 const {
-  verifyHandler,
   registerHandler,
   loginHandler,
-  mailVerificationHandler,
-} = require("../controllers/handler");
+  getUsersHandler,
+  logoutHandler,
+  tokenValidation,
+  changePassHandler,
+} = require("../controllers/userControllers.js");
 const verifyToken = require("../middleware/verifyToken.js");
-const router = express.Router();
+const {
+  mailVerificationHandler,
+  resendOtpHandler,
+} = require("../controllers/verifyEmailControllers.js");
 
-router.post("/verify", verifyToken, verifyHandler);
+const router = express.Router();
+router.get("/users", verifyToken, getUsersHandler);
+router.post("/token/validation", verifyToken, tokenValidation);
 router.post("/register", registerHandler);
 router.post("/login", loginHandler);
-router.post("/mail/verify", mailVerificationHandler);
+router.patch("/mail/verify", mailVerificationHandler);
+router.patch("/resend-otp", resendOtpHandler);
+router.patch("/change-password", verifyToken, changePassHandler);
+router.post("/logout", logoutHandler);
 
 module.exports = router;
