@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Content = () => {
   return (
     <>
@@ -14,10 +16,13 @@ const Content = () => {
           </a>
         </li>
       </nav>
-      <select className="bg-languange p-1.5 text-white outline-none rounded-lg">
-        <option value="ENG">ENG</option>
-        <option value="IDN">IDN</option>
-      </select>
+      <div>
+        <select className="mr-5 p-1.5 text-white outline-none rounded-lg">
+          <option value="ENG">ENG</option>
+          <option value="IDN">IDN</option>
+        </select>
+        <Link to={"/register"} className="bg-languange p-1.5 rounded-lg">Sign up</Link>
+      </div>
     </>
   );
 };

@@ -12,12 +12,21 @@ const tokenValidation = (req, res) => {
 };
 
 const getUsersHandler = async (req, res) => {
-  const users = await Users.findAll({
+  const { username } = req.params;
+  const user = await Users.findOne({
     attributes: ["id", "email", "username"],
+    where: {
+      username,
+    },
   });
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found!",
+    });
+  }
   return res.json({
     status: "success",
-    users,
+    user,
   });
 };
 
@@ -106,6 +115,10 @@ const loginHandler = async (req, res) => {
         expiresIn: "5h",
       }
     );
+    res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 3600000,
+    });
     return res.status(200).json({
       status: "success",
       message: "Login successfully",

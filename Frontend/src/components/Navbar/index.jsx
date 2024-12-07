@@ -1,12 +1,13 @@
 import Logo from "./Logo";
 import Content from "./Content";
+import NavLayout from "../Layouts/NavLayout";
 
 const Navbar = () => {
   return (
-    <header className="flex w-full items-center justify-between px-14 border-b">
+    <NavLayout>
       <Logo />
       <Content />
-    </header>
+    </NavLayout>
   );
 };
 

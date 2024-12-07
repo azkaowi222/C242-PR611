@@ -16,7 +16,7 @@ const sendMail = async (receiver, username) => {
   try {
     const verifCode = crypto.randomInt(100000, 1000000);
     const info = await trasnporter.sendMail({
-      from: "GreenLeaf azkaowi222@gmail.com",
+      from: "GreenLeav azkaowi222@gmail.com",
       to: receiver,
       subject: "Email Verification Code",
       text: "Verification",

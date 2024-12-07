@@ -14,7 +14,7 @@ const {
 } = require("../controllers/verifyEmailControllers.js");
 
 const router = express.Router();
-router.get("/users", verifyToken, getUsersHandler);
+router.get("/user/:username", verifyToken, getUsersHandler);
 router.post("/token/validation", verifyToken, tokenValidation);
 router.post("/register", registerHandler);
 router.post("/login", loginHandler);
