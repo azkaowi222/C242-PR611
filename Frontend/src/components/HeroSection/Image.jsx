@@ -1,6 +1,6 @@
 const Image = () => {
   return (
-    <div className="p-0 -mr-7">
+    <div className="p-0 -mr-7" data-aos="fade-left" data-aos-delay="500">
       <img
         src="images/leaves-removebg-preview.png"
         alt="leafes"

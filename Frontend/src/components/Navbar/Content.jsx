@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Content = () => {
   return (
     <>
-      <nav>
+      <nav className="text-white">
         <li className="flex gap-16 font-light">
           <a href="#" className="hover:text-pink-600 transition-all delay-200">
             Home
@@ -17,7 +17,7 @@ const Content = () => {
         </li>
       </nav>
       <div>
-        <select className="mr-5 p-1.5 text-white outline-none rounded-lg">
+        <select className="mr-5 p-1.5 bg-hero outline-none text-white">
           <option value="ENG">ENG</option>
           <option value="IDN">IDN</option>
         </select>

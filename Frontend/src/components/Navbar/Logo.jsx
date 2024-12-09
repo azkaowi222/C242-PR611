@@ -4,13 +4,13 @@ const Logo = () => {
     <Link to={"/"}>
       <div>
         <img
-          src="images/2.png"
+          src="images/logo-2.png"
           alt="Leafes"
           width={65}
           className="inline-block"
         />
-        <h1 className="inline-block text-2xl font-semibold appName tracking-wide">
-          GreenLeav
+        <h1 className="text-white inline-block text-2xl font-semibold appName tracking-wide">
+          GreenLeaves
         </h1>
       </div>
     </Link>

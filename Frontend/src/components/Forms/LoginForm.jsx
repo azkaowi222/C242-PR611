@@ -9,9 +9,12 @@ import fetchApi from "../../utils/fetch";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
+
   const loginHandler = async (e) => {
     e.preventDefault();
-    const result = await fetchApi("http://localhost:8080/login", {
+    const { status, message } = await fetchApi("http://localhost:8080/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,12 +22,16 @@ const LoginForm = () => {
       body: JSON.stringify({ email, password }),
       credentials: "include",
     });
-    console.log(result);
+    if (status !== "suceess") {
+      setErrMessage(message);
+      return;
+    }
+    setIsAuth(true);
   };
 
   return (
-    <div className="flex wrapper mt-2.5 items-center gap-10">
-      <div className="px-2 w-custom h-custom">
+    <div className="flex wrapper mt-16 items-center gap-10 bg-hero pt-3">
+      <div className="px-4 w-custom h-custom">
         <Swiper
           modules={[Autoplay, Scrollbar]}
           spaceBetween={50}
@@ -49,10 +56,10 @@ const LoginForm = () => {
         </Swiper>
       </div>
       <div className="flex flex-col login-form h-60 rounded-xl">
-        <h1 className="text-3xl font-bold">Welcome To GreenLeave App</h1>
-        <p className="my-3">Please Login to your account</p>
+        <h1 className="text-3xl font-bold text-white">Welcome To GreenLeaves</h1>
+        <p className="my-3 text-white">Please Login to your account</p>
         <div className="input relative flex flex-col">
-          <label>Email</label>
+          <label className="text-white">Email</label>
           <MdOutlineMailOutline className="absolute top-12 left-3" />
           <input
             type="email"
@@ -61,15 +68,18 @@ const LoginForm = () => {
             required
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
-          <RiLockPasswordLine className="absolute bottom-16 left-3" />
-          <input
-            type="password"
-            placeholder="******"
-            className="pl-10 my-3 border outline-none rounded-md p-2"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="password-field relative">
+            <label className="block text-white">Password</label>
+            <RiLockPasswordLine className="absolute top-12 left-3" />
+            <input
+              type="password"
+              placeholder="******"
+              className=" pl-10 my-3 border outline-none rounded-md p-2 w-full"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <p className="text-red-500 mb-4">{!isAuth ? errMessage : null}</p>
           <button
             onClick={loginHandler}
             className="bg-languange p-2 rounded-lg"
