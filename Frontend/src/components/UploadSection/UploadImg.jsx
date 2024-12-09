@@ -48,6 +48,9 @@ const UploadImg = () => {
           {!backgroundImage ? "Upload or drop image here" : ""}
         </p>
       </label>
+      <button className="mt-3 bg-languange hover:bg-hero hover:text-white p-2 rounded-lg">
+        Predict
+      </button>
       <div className="flex mt-5 gap-6 -ml-7 items-center">
         <p className="text-white">
           No image? <br /> Try one of these:

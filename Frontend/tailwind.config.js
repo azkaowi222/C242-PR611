@@ -6,6 +6,9 @@ export default {
       width: {
         99: "27rem",
       },
+      colors: {
+        hero: "#2a3335",
+      },
     },
   },
   plugins: [],
