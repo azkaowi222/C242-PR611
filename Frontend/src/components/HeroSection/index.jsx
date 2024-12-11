@@ -1,10 +1,9 @@
 import Content from "./Content";
 import Image from "./Image";
 
-const HeroSection = ({ setLeft, setIsOpen }) => {
+const HeroSection = ({ setIsOpen }) => {
   const hideNav = () => {
     setIsOpen(false);
-    setLeft("full");
   };
   return (
     <div

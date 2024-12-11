@@ -85,26 +85,30 @@ const Home = () => {
     loginValidation();
   }, []);
   return (
-    <div className="overflow-hidden">
-      {!isLogin ? (
-        <Navbar isOpen={isOpen} showNav={showNav} />
-      ) : (
-        <NavLayout>
-          <Logo />
-          <Logout user={user} showNav={showNav} isOpen={isOpen} />
-        </NavLayout>
-      )}
-      <HeroSection setIsOpen={setIsOpen} />
-      <UploadSection
-        predictHandler={predictHandler}
-        setImgElement={setImgElement}
-        imgElement={imgElement}
-        isDisable={isDisable}
-      />
-      <About />
-      <Contact />
-      <Modal isModal={isModal} setIsModal={setIsModal} label={label} />
-    </div>
+    <>
+      <div className="overflow-hidden">
+        {!isLogin ? (
+          <Navbar isOpen={isOpen} showNav={showNav} />
+        ) : (
+          <NavLayout>
+            <Logo />
+            <Logout user={user} showNav={showNav} isOpen={isOpen} />
+          </NavLayout>
+        )}
+      </div>
+      <div className="overflow-hidden" onClick={() => setIsOpen(false)}>
+        <HeroSection setIsOpen={setIsOpen} />
+        <UploadSection
+          predictHandler={predictHandler}
+          setImgElement={setImgElement}
+          imgElement={imgElement}
+          isDisable={isDisable}
+        />
+        <About />
+        <Contact />
+        <Modal isModal={isModal} setIsModal={setIsModal} label={label} />
+      </div>
+    </>
   );
 };
 
