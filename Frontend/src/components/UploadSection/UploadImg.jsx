@@ -76,27 +76,6 @@ const UploadImg = () => {
       imgElement.src = image;
 
       imgElement.onload = async () => {
-        // Resize the image to match the model's input size (448x448)
-        // let imageTensor = tf.browser.fromPixels(imgElement);
-        // imageTensor = tf.image.resizeBilinear(imageTensor, [448, 448]); // Resize to [448, 448]
-        //
-        // // Normalize the image (if the model expects it)
-        // imageTensor = imageTensor.div(tf.scalar(255)); // Normalize to [0, 1]
-        //
-        // // Add the batch dimension
-        // const batchedImage = imageTensor.expandDims(0); // Shape: [1, 448, 448, 3]
-        //
-        // try {
-        //   // Make prediction
-        //   const prediction = await model.predict(batchedImage);
-        //   const predictionData = prediction.dataSync();
-        //
-        //   // Set prediction
-        //   setPrediction(predictionData);
-        //   alert(`Prediction: ${predictionData}`);
-        // } catch (error) {
-        //   console.error('Error making prediction:', error);
-        // }
         // Create a Tensor from the image
         const img = tf.browser.fromPixels(imgElement)
           .resizeNearestNeighbor([448, 448])
@@ -109,8 +88,7 @@ const UploadImg = () => {
 
         // Process the result (adjust according to your model's output)
         const maxIndex = predictions.indexOf(Math.max(...predictions));
-        console.log('maxindex', maxIndex);
-        const predictedLabel = labelIndex[maxIndex + 1];
+        const predictedLabel = labelIndex[maxIndex];
         document.getElementById('prediction').innerText = `Prediction: ${predictedLabel}`;
       };
 
