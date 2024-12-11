@@ -21,6 +21,6 @@ router.post("/login", loginHandler);
 router.patch("/mail/verify", mailVerificationHandler);
 router.patch("/resend-otp", resendOtpHandler);
 router.patch("/change-password", verifyToken, changePassHandler);
-router.post("/logout", logoutHandler);
+router.delete("/logout", logoutHandler);
 
 module.exports = router;

@@ -6,11 +6,14 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import "./index.css";
 import "./App.css";
+import NotFound from "./components/pages/404";
+import Profile from "./components/pages/Profile";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: "/login",
@@ -19,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

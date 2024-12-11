@@ -1,12 +1,20 @@
 import { useState } from "react";
 
-const UploadImg = () => {
+const UploadImg = ({
+  predictHandler,
+  setImgElement,
+  imgElement,
+  isDisable,
+}) => {
   const [backgroundImage, setBackgroundImage] = useState(null);
 
-  const fileHandler = (e) => {
+  const fileHandler = async (e) => {
     const file = e.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    setBackgroundImage(imageUrl);
+    const reader = new FileReader(file);
+    reader.onloadend = () => {
+      setBackgroundImage(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const dragOverHandler = (e) => {
@@ -25,7 +33,13 @@ const UploadImg = () => {
   };
 
   return (
-    <div className="flex flex-col w-96">
+    <div className="flex flex-col w-96 max-sm:w-4/5">
+      <img
+        src={backgroundImage}
+        alt="cassava-leaves"
+        hidden
+        onLoad={(e) => setImgElement(e.target)}
+      />
       <label
         htmlFor="input-file"
         className="rounded-lg w-full flex flex-col items-center justify-center h-64 bg-img-upload bg-slate-200"
@@ -48,12 +62,16 @@ const UploadImg = () => {
           {!backgroundImage ? "Upload or drop image here" : ""}
         </p>
       </label>
-      <button className="mt-3 bg-languange hover:bg-hero hover:text-white p-2 rounded-lg">
-        Predict
+      <button
+        onClick={predictHandler}
+        disabled={isDisable}
+        className="mt-3 bg-languange hover:bg-hero hover:text-white p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {!isDisable ? "Predict" : "Predicting..."}
       </button>
-      <div className="flex mt-5 gap-6 -ml-7 items-center">
-        <p className="text-white">
-          No image? <br /> Try one of these:
+      <div className="flex mt-5 gap-6 -ml-7 items-center max-sm:m-0 max-sm:block">
+        <p className="text-white max-sm:inline-block max-sm:my-2 max-sm:mr-2">
+          No image? <span className="md:block">Try one of these:</span>
         </p>
         <div className="img w-16 flex gap-2">
           <img

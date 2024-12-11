@@ -2,11 +2,11 @@ import Logo from "./Logo";
 import Content from "./Content";
 import NavLayout from "../Layouts/NavLayout";
 
-const Navbar = () => {
+const Navbar = ({isOpen, showNav}) => {
   return (
     <NavLayout>
       <Logo />
-      <Content />
+      <Content isOpen={isOpen} showNav={showNav} />
     </NavLayout>
   );
 };

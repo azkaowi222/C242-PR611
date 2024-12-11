@@ -1,28 +1,11 @@
-import { Link } from "react-router-dom";
+import BurgerMenu from "../HamburgerMenu/BurgerMenu";
+import NavMenu from "../HamburgerMenu/NavMenu";
 
-const Content = () => {
+const Content = ({ isOpen, showNav }) => {
   return (
     <>
-      <nav className="text-white">
-        <li className="flex gap-16 font-light">
-          <a href="#" className="hover:text-pink-600 transition-all delay-200">
-            Home
-          </a>
-          <a href="#" className="hover:text-pink-600 transition-all delay-200">
-            About Us
-          </a>
-          <a href="#" className="hover:text-pink-600 transition-all delay-200">
-            Contact
-          </a>
-        </li>
-      </nav>
-      <div>
-        <select className="mr-5 p-1.5 bg-hero outline-none text-white">
-          <option value="ENG">ENG</option>
-          <option value="IDN">IDN</option>
-        </select>
-        <Link to={"/register"} className="bg-languange p-1.5 rounded-lg">Sign up</Link>
-      </div>
+      <BurgerMenu showNav={showNav} />
+      <NavMenu isOpen={isOpen} />
     </>
   );
 };
